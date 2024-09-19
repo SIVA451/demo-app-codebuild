@@ -5,14 +5,14 @@ files:
     destination: /var/www/html  # Deployment directory for the app files
 hooks:
   BeforeInstall:
-    - location: scripts/stop_server.sh  # Stop any running instance of the Node.js app
+    - location: stop_server.sh  # Stop any running instance of the Node.js app
       timeout: 300
       runas: ec2-user
   AfterInstall:
-    - location: scripts/install_dependencies.sh  # Install Node.js dependencies after copying files
+    - location: install_dependencies.sh  # Install Node.js dependencies after copying files
       timeout: 300
       runas: ec2-user
   ApplicationStart:
-    - location: scripts/start_server.sh  # Start the Node.js app
+    - location: start_server.sh  # Start the Node.js app
       timeout: 300
       runas: ec2-user
