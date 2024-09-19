@@ -1,15 +1,25 @@
-version: 0.2
+version: 0.1
 phases:
   install:
     commands:
-      - npm install
+      - echo "Installing dependencies..."
+      - npm install  # Install project dependencies
   build:
     commands:
-      - npm run build
+      - echo "Building the application..."
+      - npm run build  # Run your build command (customize as needed)
   post_build:
     commands:
-      - zip -r ../nodejs-app.zip .
+      - echo "Packaging the application..."
+      - zip -r nodejs-app.zip .  # Zip the contents of the current directory
+      - ls -l nodejs-app.zip  # List the zip file to ensure it's created
+
 artifacts:
   files:
-    - nodejs-app.zip
-  discard-paths: yes
+    - nodejs-app.zip  # Ensure the artifact name matches the zip file created in the post_build phase
+  discard-paths: yes  # Discard the folder structure
+
+cache:
+  paths:
+    - node_modules/**  # Cache dependencies to speed up subsequent builds
+
